@@ -223,7 +223,7 @@ dt_event <-subset(dt_event, select = -Brands)
 dt_event <-subset(dt_event, select = -year)
 dt_event <-subset(dt_event, select = -week)
 dt_all <- merge(MMM, dt_event, by ="Periods",all.x = TRUE)
-dt_all$Events <- ifelse(is.na(dt_all$Events), "na", dt_all$Events)```
+dt_all$Events <- ifelse(is.na(dt_all$Events), "na", dt_all$Events)
 
 
 #convert periods into date format 
@@ -250,3 +250,15 @@ dt_all$lockdown[dt_all$Date >= start_lockdown2 & dt_all$Date <= end_lockdown2] <
 dt_all$lockdown[dt_all$Date >= start_lockdown3 & dt_all$Date <= end_lockdown3] <- 1
 write.csv(dt_all, "thesisMMM.csv", row.names = FALSE)
 
+
+#for linear regression
+#slicing dt_all into 3 parts: 80% train data, 10 % for validation and 10% for test. The division is the same ratio as Robyn time-series split. 
+n <- nrow(dt_all) # Calculate the total number of elements in your data
+trainnrow <- floor(n * 0.8)
+MMM_train <- slice(dt_all,1:trainnrow)
+
+valrow <- floor(n* 0.1)
+MMM_val <- slice(dt_all, (nrow(MMM_train) + 1):(nrow(MMM_train) + valrow))
+
+testrow <- floor(n* 0.1)
+MMM_test <- slice(dt_all, (nrow(MMM_train) + nrow(MMM_val) + 1):(nrow(MMM_train) + nrow(MMM_val) + testrow))
