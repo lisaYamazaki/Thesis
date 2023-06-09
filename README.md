@@ -2,7 +2,7 @@
 Thesis repository for code submission
 
 
-File descriptions
+**File descriptions**
 
 preprocessing.R: data cleaning 
 
