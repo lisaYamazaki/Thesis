@@ -430,3 +430,33 @@ Response2$plot
 # ROAS for the 100$ from Spend1 level
 roas_d <-(Response2$response_total - Response1$response_total) / (Spend2 - Spend1)
 
+
+#MAPE
+library(MLmetrics)
+robyndecomp <- pareto_alldecomp_matrix
+selected_decomp<-subset(robyndecomp, robyndecomp$solID =='2_779_2')
+Maperobyn <-MAPE(selected_decomp$depVarHat, selected_decomp$dep_var)
+
+#Adj.R-square
+true <-  selected_decomp$dep_var
+predicted <-selected_decomp$depVarHat
+
+get_rsq <- function(true, predicted, p = 14, df.int = NULL, n_train = 184) {
+  sse <- sum((predicted - true)^2)
+  ssr <- sum((predicted - mean(true))^2)
+  sst <- sum((true - mean(true))^2)
+  rsq <- 1 - sse / (sse+ssr) # rsq interpreted as variance explained
+  rsq_out <- rsq
+  if (!is.null(p) && !is.null(df.int)) {
+    if (!is.null(n_train)) {
+      n <- n_train # for oos dataset, use n from train set for adj. rsq
+    } else {
+      n <- length(true)
+    }
+    rdf <- n - p - 1
+    rsq_adj <- 1 - (1 - rsq) * ((n - df.int) / rdf)
+    rsq_out <- rsq_adj
+  }
+  return(rsq_out)
+}
+
