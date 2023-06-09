@@ -9,155 +9,155 @@ output: html_document
 
 
 library(readxl)
-#TV
+#TrdA
 #load data
-TV<-read_excel("MMM/UL_MMM_TV.xlsx")
+TrdA<-read_excel("MMM/UL_MMM_TrdA.xlsx")
 ## filtering data on the Mealkit
-TV<-subset(TV, TV$Sector =='MEAL KITS')
+TrdA<-subset(TrdA, TrdA$Sector =='MEAL KITS')
 #make columns of week number and year
-TV$week<-format(as.Date(TV$Date), "%U")
-TV$year<-format(as.Date(TV$Date), "%Y")
+TrdA$week<-format(as.Date(TrdA$Date), "%U")
+TrdA$year<-format(as.Date(TrdA$Date), "%Y")
 # combine week number and year number into a single column
-TV$Periods<- paste(TV$year,TV$week)
+TrdA$Periods<- paste(TrdA$year,TrdA$week)
 #sum the values of cost grouped by the periods (yyyy ww)
-TV_2 = data.frame(TV$Periods, Cost = TV$Net.media.costs)
-TV_2<- TV_2 %>%
-  group_by(TV.Periods) %>%
+TrdA_2 = data.frame(TrdA$Periods, Cost = TrdA$Net.media.costs)
+TrdA_2<- TrdA_2 %>%
+  group_by(TrdA.Periods) %>%
   summarize(total_cost = sum(Cost))
 #change column names
-colnames(TV_2) <-c('Periods','TVcosts')
+colnames(TrdA_2) <-c('Periods','TrdAcosts')
 
 
-#Overig
+#TrdB
 #load data
-Overig<-read_excel("MMM/UL_MMM_Overig.xlsx")
+TrdB<-read_excel("MMM/UL_MMM_TrdB.xlsx")
 ## filtering data on the Mealkit
-Overig<-subset(Overig, Overig$Sector =='MEAL KITS')
+TrdB<-subset(TrdB, TrdB$Sector =='MEAL KITS')
 #make columns of week number and year
-Overig$week<-format(as.Date(Overig$Date), "%U")
-Overig$year<-format(as.Date(Overig$Date), "%Y")
+TrdB$week<-format(as.Date(TrdB$Date), "%U")
+TrdB$year<-format(as.Date(TrdB$Date), "%Y")
 # combine week number and year number into a single column
-Overig$Periods<- paste(Overig$year,Overig$week)
+TrdB$Periods<- paste(TrdB$year,TrdB$week)
 #sum the values of cost grouped by the periods (yyyy ww)
-Overig_2 = data.frame(Overig$Periods, Cost = Overig$`Net media costs`)
-Overig_2<- Overig_2 %>%
-  group_by(Overig.Periods) %>%
+TrdB_2 = data.frame(TrdB$Periods, Cost = TrdB$`Net media costs`)
+TrdB_2<- TrdB_2 %>%
+  group_by(TrdB.Periods) %>%
   summarize(total_cost = sum(Cost))
 #change column names
-colnames(Overig_2) <-c('Periods','Overigcosts')
+colnames(TrdB_2) <-c('Periods','TrdBcosts')
 
-#FB
-FB <- read_excel("MMM/UL_MMM_Facebook.xlsx")
-FB<-subset(FB, FB$Sector =='MEAL KITS')
-#Separate data into facebook and instagram
-IG<-FB[FB$Publisher == 'instagram', ]
-FB<-FB[FB$Publisher == 'facebook', ]
+#DgtA
+DgtA <- read_excel("MMM/UL_MMM_DgtA.xlsx")
+DgtA<-subset(DgtA, DgtA$Sector =='MEAL KITS')
+#Separate data into DgtA and instagram
+DgtB<-DgtA[DgtA$Publisher == 'instagram', ]
+DgtA<-DgtA[DgtA$Publisher == 'DgtA', ]
 #make columns of week number and year
-FB$week<-format(as.Date(FB$Date), "%U")
-FB$year<-format(as.Date(FB$Date), "%Y")
+DgtA$week<-format(as.Date(DgtA$Date), "%U")
+DgtA$year<-format(as.Date(DgtA$Date), "%Y")
 # combine week number and year number into a single column
-FB$Periods<- paste(FB$year,FB$week)
+DgtA$Periods<- paste(DgtA$year,DgtA$week)
 # print the combined dates
-print(FB$Periods)
+print(DgtA$Periods)
 #sum the values of cost grouped by the periods (yyyy ww)
-FB_2 = data.frame(FB$Periods, Cost = FB$Costs)
-FB_2<- FB_2 %>%
-  group_by(FB.Periods) %>%
+DgtA_2 = data.frame(DgtA$Periods, Cost = DgtA$Costs)
+DgtA_2<- DgtA_2 %>%
+  group_by(DgtA.Periods) %>%
   summarize(total_cost = sum(Cost))
 #change column names
-colnames(FB_2) <-c('Periods','FBcosts')
+colnames(DgtA_2) <-c('Periods','DgtAcosts')
 
 ##Instagram
 #make columns of week number and year
-IG$week<-format(as.Date(IG$Date), "%U")
-IG$year<-format(as.Date(IG$Date), "%Y")
+DgtB$week<-format(as.Date(DgtB$Date), "%U")
+DgtB$year<-format(as.Date(DgtB$Date), "%Y")
 # combine week number and year number into a single column
-IG$Periods<- paste(IG$year,IG$week)
+DgtB$Periods<- paste(DgtB$year,DgtB$week)
 # print the combined dates
-print(IG$Periods)
+print(DgtB$Periods)
 #sum the values of cost grouped by the periods (yyyy ww)
-IG_2 = data.frame(IG$Periods, Cost = IG$Costs)
-IG_2<- IG_2 %>%
-  group_by(IG.Periods) %>%
+DgtB_2 = data.frame(DgtB$Periods, Cost = DgtB$Costs)
+DgtB_2<- DgtB_2 %>%
+  group_by(DgtB.Periods) %>%
   summarize(total_cost = sum(Cost))
 #change column names
-colnames(IG_2) <-c('Periods','IGcosts')
+colnames(DgtB_2) <-c('Periods','DgtBcosts')
 
-#Pinterest
+#DgtC
 #load data
-Pinterest<-read_excel("MMM/UL_MMM_Pinterest.xlsx")
+DgtC<-read_excel("MMM/UL_MMM_DgtC.xlsx")
 ## filtering data on the Mealkit
-Pinterest<-subset(Pinterest, Pinterest$Sector =='MEAL KITS')
+DgtC<-subset(DgtC, DgtC$Sector =='MEAL KITS')
 #make columns of week number and year
-Pinterest$week<-format(as.Date(Pinterest$Date), "%U")
-Pinterest$year<-format(as.Date(Pinterest$Date), "%Y")
+DgtC$week<-format(as.Date(DgtC$Date), "%U")
+DgtC$year<-format(as.Date(DgtC$Date), "%Y")
 # combine week number and year number into a single column
-Pinterest$Periods<- paste(Pinterest$year,Pinterest$week)
+DgtC$Periods<- paste(DgtC$year,DgtC$week)
 #sum the values of cost grouped by the periods (yyyy ww)
-Pinterest_2 = data.frame(Pinterest$Periods, Cost = Pinterest$Costs)
-Pinterest_2<- Pinterest_2 %>%
-  group_by(Pinterest.Periods) %>%
+DgtC_2 = data.frame(DgtC$Periods, Cost = DgtC$Costs)
+DgtC_2<- DgtC_2 %>%
+  group_by(DgtC.Periods) %>%
   summarize(total_cost = sum(Cost))
 #change column names
-colnames(Pinterest_2) <-c('Periods','Pinterestcosts')
+colnames(DgtC_2) <-c('Periods','DgtCcosts')
 
-#Google Adword
+#Google DgtD
 #load data
-Adword<-read_excel("MMM/UL_MMM_Google Adwords.xlsx")
+DgtD<-read_excel("MMM/UL_MMM_Google DgtDs.xlsx")
 ## filtering data on the Mealkit
-Adword<-subset(Adword, Adword$Sector =='MEAL KITS')
+DgtD<-subset(DgtD, DgtD$Sector =='MEAL KITS')
 #make columns of week number and year
-Adword$week<-format(as.Date(Adword$Date), "%U")
-Adword$year<-format(as.Date(Adword$Date), "%Y")
+DgtD$week<-format(as.Date(DgtD$Date), "%U")
+DgtD$year<-format(as.Date(DgtD$Date), "%Y")
 # combine week number and year number into a single column
-Adword$Periods<- paste(Adword$year,Adword$week)
+DgtD$Periods<- paste(DgtD$year,DgtD$week)
 #sum the values of cost grouped by the periods (yyyy ww)
-Adword_2 = data.frame(Adword$Periods, Cost = Adword$Costs)
-Adword_2<- Adword_2 %>%
-  group_by(Adword.Periods) %>%
+DgtD_2 = data.frame(DgtD$Periods, Cost = DgtD$Costs)
+DgtD_2<- DgtD_2 %>%
+  group_by(DgtD.Periods) %>%
   summarize(total_cost = sum(Cost))
 #change column names
-colnames(Adword_2) <-c('Periods','Adwordcosts')
+colnames(DgtD_2) <-c('Periods','DgtDcosts')
 
-#Xandr
+#PDgtA
 #load data
-Xandr<-read_excel("MMM/UL_MMM_Xandr.xlsx")
+PDgtA<-read_excel("MMM/UL_MMM_PDgtA.xlsx")
 ## filtering data on the Mealkit
-Xandr<-subset(Xandr, Xandr$Sector =='MEAL KITS')
+PDgtA<-subset(PDgtA, PDgtA$Sector =='MEAL KITS')
 #make columns of week number and year
-Xandr$week<-format(as.Date(Xandr$Date), "%U")
-Xandr$year<-format(as.Date(Xandr$Date), "%Y")
+PDgtA$week<-format(as.Date(PDgtA$Date), "%U")
+PDgtA$year<-format(as.Date(PDgtA$Date), "%Y")
 # combine week number and year number into a single column
-Xandr$Periods<- paste(Xandr$year,Xandr$week)
+PDgtA$Periods<- paste(PDgtA$year,PDgtA$week)
 #sum the values of cost grouped by the periods (yyyy ww)
-Xandr_2 = data.frame(Xandr$Periods, Cost = Xandr$Costs)
-Xandr_2<- Xandr_2 %>%
-  group_by(Xandr.Periods) %>%
+PDgtA_2 = data.frame(PDgtA$Periods, Cost = PDgtA$Costs)
+PDgtA_2<- PDgtA_2 %>%
+  group_by(PDgtA.Periods) %>%
   summarize(total_cost = sum(Cost))
 #change column names
-colnames(Xandr_2) <-c('Periods','Xandrcosts')
+colnames(PDgtA_2) <-c('Periods','PDgtAcosts')
 
-##DV360
+##PDgtB
 #load data
-DV360<- read_excel("MMM/CORRECT_DV360_MMM.xlsx")
+PDgtB<- read_excel("MMM/CORRECT_PDgtB_MMM.xlsx")
 ## filtering data on the Mealkit
-DV360<-subset(DV360, DV360$Sector =='MEAL KITS')
+PDgtB<-subset(PDgtB, PDgtB$Sector =='MEAL KITS')
 #make columns of week number and year
-DV360$week<-format(as.Date(DV360$Date), "%U")
-DV360$year<-format(as.Date(DV360$Date), "%Y")
+PDgtB$week<-format(as.Date(PDgtB$Date), "%U")
+PDgtB$year<-format(as.Date(PDgtB$Date), "%Y")
 # combine week number and year number into a single column
-DV360$Periods<- paste(DV360$year,DV360$week)
+PDgtB$Periods<- paste(PDgtB$year,PDgtB$week)
 #sum the values of cost grouped by the periods (yyyy ww)
-DV360_2 = data.frame(DV360$Periods, Cost = DV360$Costs)
-DV360_2<- DV360_2 %>%
-  group_by(DV360.Periods) %>%
+PDgtB_2 = data.frame(PDgtB$Periods, Cost = PDgtB$Costs)
+PDgtB_2<- PDgtB_2 %>%
+  group_by(PDgtB.Periods) %>%
   summarize(total_cost = sum(Cost))
 #change column names
-colnames(DV360_2) <-c('Periods','DV360costs')
+colnames(PDgtB_2) <-c('Periods','PDgtBcosts')
 
 
 #summing media cost data 
-dfs <- list(DV360_2, FB_2, IG_2, TV_2, Xandr_2, Pinterest_2, Adword_2, Overig_2)
+dfs <- list(PDgtB_2, DgtA_2, DgtB_2, TrdA_2, PDgtA_2, DgtC_2, DgtD_2, TrdB_2)
 # merge all data frames by "Periods" column
 mediacosts <- Reduce(function(x, y) merge(x, y, by = "Periods", all = TRUE), dfs)
 
@@ -196,8 +196,8 @@ MMM <- merge(mediacosts, KPI2, by = "Periods", all = TRUE)
 MMM[is.na(MMM)] <- 0
 #values of 2 columns of media data were assigned to the wrong rows. insert the values into row 73 and delete row 74, as the pseudo-period computed does not exsit. 
 #values are hiddden here as they are company data
-MMM[73, "FBcosts"] <- XXXXXX
-MMM[73, "IGcosts"] <-XXXXXXX
+MMM[73, "DgtAcosts"] <- XXXXXX
+MMM[73, "DgtBcosts"] <-XXXXXXX
 MMM <- MMM[-c(1,2,74,187,189,190,191,192,193,194),]
 
 #convert periods into date format 
@@ -208,16 +208,23 @@ MMM[71, "Date"] <- "2021-01-01"
 
 
 ### Event data
+Event_Labelling_per_Brand <- read_excel("MMM/Event Labelling per Brand.xlsx")
+View(Event_Labelling_per_Brand)
+dt_event <-subset(Event_Labelling_per_Brand, Event_Labelling_per_Brand$Brands =='Knorr Mealkits')
+dt_event[1,"Events"] <- "event1"
+dt_event[2,"Events"] <- "event2"
+dt_event[3,"Events"] <- "event3"
+dt_event$week<-format(as.Date(dt_event$Date), "%U")
+dt_event$year<-format(as.Date(dt_event$Date), "%Y")
+# combine week number and year number into a single column
+dt_event$Periods<- paste(dt_event$year,dt_event$week)
+dt_event <-subset(dt_event, select = -Date)
+dt_event <-subset(dt_event, select = -Brands)
+dt_event <-subset(dt_event, select = -year)
+dt_event <-subset(dt_event, select = -week)
+dt_all <- merge(MMM, dt_event, by ="Periods",all.x = TRUE)
+dt_all$Events <- ifelse(is.na(dt_all$Events), "na", dt_all$Events)```
 
-
-#Merge KPI data and media data
-MMM <- merge(mediacosts, KPI2, by = "Periods", all = TRUE)
-#convert all na into 0 media costs
-MMM[is.na(MMM)] <- 0
-#values of 2 columns of media data were assigned to the wrong rows. insert the values into row 73 and delete row 74, as the pseudo-period computed does not exsit. 
-MMM[73, "FBcosts"] <- 3276.590
-MMM[73, "IGcosts"] <-724.3599
-MMM <- MMM[-c(1,2,74,187,189,190,191,192,193,194),]
 
 #convert periods into date format 
 MMM$Date <- as.Date(paste0(MMM$Periods, " 1"), format = "%Y %U %u")
