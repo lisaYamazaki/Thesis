@@ -198,7 +198,11 @@ AllocatorCollect2 <- robyn_allocator(
 print(AllocatorCollect1)
 plot(AllocatorCollect1)
 
-##get marginal returns
+#ROI, response
+table_spendshare <-data.frame(selected_coef$rn, selected_coef$spend_share, selected_coef$effect_share,selected_coef$mean_spend, selected_coef$mean_response, selected_coef$roi_total, selected_coef$roi_mean)
+
+
+##Section 3 : get marginal returns
 
 #########################################################TrdA Identified ##########################################################
 
@@ -437,26 +441,25 @@ robyndecomp <- pareto_alldecomp_matrix
 selected_decomp<-subset(robyndecomp, robyndecomp$solID =='2_779_2')
 Maperobyn <-MAPE(selected_decomp$depVarHat, selected_decomp$dep_var)
 
-#Adj.R-square
-true <-  selected_decomp$dep_var
-predicted <-selected_decomp$depVarHat
+nrobyn <- nrow(selected_decomp) # Calculate the total number of elements in your data
+trainnrow_r <- floor(nrobyn * 0.8)
+MMM_train_r <- slice(selected_decomp,1:trainnrow_r)
 
-get_rsq <- function(true, predicted, p = 14, df.int = NULL, n_train = 184) {
-  sse <- sum((predicted - true)^2)
-  ssr <- sum((predicted - mean(true))^2)
-  sst <- sum((true - mean(true))^2)
-  rsq <- 1 - sse / (sse+ssr) # rsq interpreted as variance explained
-  rsq_out <- rsq
-  if (!is.null(p) && !is.null(df.int)) {
-    if (!is.null(n_train)) {
-      n <- n_train # for oos dataset, use n from train set for adj. rsq
-    } else {
-      n <- length(true)
-    }
-    rdf <- n - p - 1
-    rsq_adj <- 1 - (1 - rsq) * ((n - df.int) / rdf)
-    rsq_out <- rsq_adj
-  }
-  return(rsq_out)
-}
+valrow_r <- floor(nrobyn* 0.1)
+MMM_val_r <- slice(selected_decomp, (nrow(MMM_train_r) + 1):(nrow(MMM_train_r) + valrow_r))
+
+testrow_r <- floor(nrobyn* 0.1)
+MMM_test_r <- slice(selected_decomp, (nrow(MMM_train_r) + nrow(MMM_val_r) + 1):(nrow(MMM_train_r) + nrow(MMM_val_r) + testrow_r))
+
+##mape
+library(MLmetrics)
+Maperobyn <-MAPE(MMM_test_r$depVarHat, MMM_test_r$dep_var)
+
+##rsquare
+true <-  MMM_test_r$dep_var
+predicted <-MMM_test_r$depVarHat
+ssr <- sum((predicted - mean(true))^2)
+sst <- sum((true - mean(true))^2)
+rsquared_robyn <- 1 - (ssr/sst)
+adjusted_robyn <- 1-(1-rsquared_robyn)*(16-1)/(16-15-1)
 

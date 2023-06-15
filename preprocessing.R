@@ -225,7 +225,6 @@ dt_event <-subset(dt_event, select = -week)
 dt_all <- merge(MMM, dt_event, by ="Periods",all.x = TRUE)
 dt_all$Events <- ifelse(is.na(dt_all$Events), "na", dt_all$Events)
 
-
 #convert periods into date format 
 MMM$Date <- as.Date(paste0(MMM$Periods, " 1"), format = "%Y %U %u")
 # correct a date 
