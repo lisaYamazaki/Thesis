@@ -452,6 +452,7 @@ MMM_val_r <- slice(selected_decomp, (nrow(MMM_train_r) + 1):(nrow(MMM_train_r) +
 testrow_r <- floor(nrobyn* 0.1)
 MMM_test_r <- slice(selected_decomp, (nrow(MMM_train_r) + nrow(MMM_val_r) + 1):(nrow(MMM_train_r) + nrow(MMM_val_r) + testrow_r))
 
+
 ##mape
 library(MLmetrics)
 Maperobyn <-MAPE(MMM_test_r$depVarHat, MMM_test_r$dep_var)
