@@ -206,7 +206,7 @@ table_spendshare <-data.frame(selected_coef$rn, selected_coef$spend_share, selec
 
 #########################################################TrdA Identified ##########################################################
 
-Spend1 <-9696999
+Spend1 <-XXXXXXXXX
 
 Response1 <- robyn_response(
   InputCollect = InputCollect,
@@ -219,7 +219,7 @@ Response1 <- robyn_response(
 Response1$plot
 
 Spend2 <- Spend1 + 1
-percentage_t <-Spend2/700000
+percentage_t <-Spend2/XXXXXXXX
 Response2 <- robyn_response(
   InputCollect = InputCollect,
   OutputCollect = OutputCollect,
@@ -235,7 +235,7 @@ roas_t<-(Response2$response_total - Response1$response_total) / (Spend2 - Spend1
 
 #########################################################TrdB Identified ##########################################################
 
-Spend1 <-3699999
+Spend1 <-XXXXXXXXX
 
 Response1 <- robyn_response(
   InputCollect = InputCollect,
@@ -248,7 +248,7 @@ Response1 <- robyn_response(
 Response1$plot
 
 Spend2 <- Spend1 + 1
-percentage_o <-Spend2/700000
+percentage_o <-Spend2/XXXXXXXXX
 Response2 <- robyn_response(
   InputCollect = InputCollect,
   OutputCollect = OutputCollect,
@@ -264,7 +264,7 @@ roas_o<-(Response2$response_total - Response1$response_total) / (Spend2 - Spend1
 
 #########################################################DgtA Identified ##########################################################
 
-Spend1 <-99999
+Spend1 <-XXXXXXXXXX
 
 Response1 <- robyn_response(
   InputCollect = InputCollect,
@@ -277,7 +277,7 @@ Response1 <- robyn_response(
 Response1$plot
 
 Spend2 <- Spend1 + 1
-percentage_f <-Spend2/700000
+percentage_f <-Spend2/XXXXXXXXX
 Response2 <- robyn_response(
   InputCollect = InputCollect,
   OutputCollect = OutputCollect,
@@ -293,7 +293,7 @@ roas_f<-(Response2$response_total - Response1$response_total) / (Spend2 - Spend1
 
 #########################################################DgtB Identified ##########################################################
 
-Spend1 <-240124
+Spend1 <-XXXXXXXXXX
 
 Response1 <- robyn_response(
   InputCollect = InputCollect,
@@ -306,7 +306,7 @@ Response1 <- robyn_response(
 Response1$plot
 
 Spend2 <- Spend1 + 1
-percentage_i <-Spend2/700000
+percentage_i <-Spend2/XXXXXXXXX
 Response2 <- robyn_response(
   InputCollect = InputCollect,
   OutputCollect = OutputCollect,
@@ -322,7 +322,7 @@ roas_i<-(Response2$response_total - Response1$response_total) / (Spend2 - Spend1
 
 ############################################################DgtC identified ###################################
 
-Spend1 <-2999999
+Spend1 <-XXXXXXXXXX
 
 Response1 <- robyn_response(
   InputCollect = InputCollect,
@@ -335,7 +335,7 @@ Response1 <- robyn_response(
 Response1$plot
 
 Spend2 <- Spend1 + 1
-percentage_p <- Spend2/700000
+percentage_p <- Spend2/XXXXXXXXX
 Response2 <- robyn_response(
   InputCollect = InputCollect,
   OutputCollect = OutputCollect,
@@ -351,7 +351,7 @@ roas_p<-(Response2$response_total - Response1$response_total) / (Spend2 - Spend1
 
 ###############################################################DgtD identified ###################################
 
-Spend1 <-399999
+Spend1 <-XXXXXXXXXX
 Response1 <- robyn_response(
   InputCollect = InputCollect,
   OutputCollect = OutputCollect,
@@ -363,7 +363,7 @@ Response1 <- robyn_response(
 Response1$plot
 
 Spend2 <- Spend1 + 1
-percentage_a <- Spend2/700000
+percentage_a <- Spend2/XXXXXXXXX
 Response2 <- robyn_response(
   InputCollect = InputCollect,
   OutputCollect = OutputCollect,
@@ -379,7 +379,7 @@ roas_a<-(Response2$response_total - Response1$response_total) / (Spend2 - Spend1
 
 
 ################################################################# PDgtA identified ####################
-Spend1 <-1499999
+Spend1 <-XXXXXXXXX
 
 Response1 <- robyn_response(
   InputCollect = InputCollect,
@@ -392,7 +392,7 @@ Response1 <- robyn_response(
 Response1$plot
 
 Spend2 <- Spend1 + 1
-percentage_x <-Spend2/700000
+percentage_x <-Spend2/XXXXXXXXX
 Response2 <- robyn_response(
   InputCollect = InputCollect,
   OutputCollect = OutputCollect,
@@ -407,7 +407,7 @@ Response2$plot
 roas_x <-(Response2$response_total - Response1$response_total) / (Spend2 - Spend1)
 
 ################################################################# PDgtB identified ####################
-Spend1 <-899999
+Spend1 <-XXXXXXXXXx
 
 Response1 <- robyn_response(
   InputCollect = InputCollect,
@@ -420,7 +420,7 @@ Response1 <- robyn_response(
 Response1$plot
 
 Spend2 <- Spend1 + 1
-percentage_d <-Spend2/700000
+percentage_d <-Spend2/XXXXXXXXX
 Response2 <- robyn_response(
   InputCollect = InputCollect,
   OutputCollect = OutputCollect,
