@@ -208,6 +208,7 @@ table_spendshare <-data.frame(selected_coef$rn, selected_coef$spend_share, selec
 
 Spend1 <-XXXXXXXXX
 
+
 Response1 <- robyn_response(
   InputCollect = InputCollect,
   OutputCollect = OutputCollect,
